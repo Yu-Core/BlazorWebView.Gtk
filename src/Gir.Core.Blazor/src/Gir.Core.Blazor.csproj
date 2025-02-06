@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<DefineConstants>$(DefineConstants);GTK;WEBKIT_GTK</DefineConstants>
+	</PropertyGroup>
+	
+	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView" Version="8.0.*" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView" Version="9.0.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="GirCore.Gtk-4.0" Version="0.6.0-preview.1" />
+		<PackageReference Include="GirCore.WebKit-6.0" Version="0.6.0-preview.1" />
+	</ItemGroup>
+</Project>
