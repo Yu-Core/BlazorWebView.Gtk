@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Soup;
-using System.Threading.Channels;
 using System.Web;
 using WebKit;
 
@@ -28,7 +27,6 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
     UserScript _script = default!;
     private readonly WebKit.WebView _webview;
     private readonly ILogger _logger;
-    private readonly Channel<string> _channel;
     private const string BlazorInitScript
         = $$"""
             window.__receiveMessageCallbacks = [];
@@ -97,17 +95,6 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
         _contentRootRelativeToAppRoot = contentRootRelativeToAppRoot;
         _hostPageRelativePath = hostPagePathWithinFileProvider;
 
-        // https://github.com/DevToys-app/DevToys/issues/1194
-        // Forked from https://github.com/tryphotino/photino.Blazor/issues/40
-        //Create channel and start reader
-        _channel = Channel.CreateUnbounded<string>(new UnboundedChannelOptions()
-        {
-            SingleReader = true,
-            SingleWriter = false,
-            AllowSynchronousContinuations = false
-        });
-        Task.Run(SendMessagePump);
-
         Attach();
     }
 
@@ -122,29 +109,9 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
     {
         var script = $"__dispatchMessageCallback(\"{HttpUtility.JavaScriptStringEncode(message)}\")";
 
-        // https://github.com/DevToys-app/DevToys/issues/1194
-        // Forked from https://github.com/tryphotino/photino.Blazor/issues/40
-        while (!_channel.Writer.TryWrite(script))
-        {
-            Thread.Sleep(200);
-        }
+        _webview.EvaluateJavascriptAsync(script);
     }
 
-    private async Task SendMessagePump()
-    {
-        // https://github.com/DevToys-app/DevToys/issues/1194
-        // Forked from https://github.com/tryphotino/photino.Blazor/issues/40
-        ChannelReader<string> reader = _channel.Reader;
-        try
-        {
-            while (true)
-            {
-                string script = await reader.ReadAsync();
-                _ = _webview?.EvaluateJavascriptAsync(script);
-            }
-        }
-        catch (ChannelClosedException) { }
-    }
 
     private void Attach()
     {
@@ -202,7 +169,7 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
     /// <exception cref="Exception"></exception>
     void HandleUriSchemeRequest(URISchemeRequest request)
     {
-        if (!UriSchemeRequestHandlers.TryGetValue(request.GetWebView().Handle, out var uriSchemeHandler))
+        if (!UriSchemeRequestHandlers.TryGetValue(request.GetWebView().Handle.DangerousGetHandle(), out var uriSchemeHandler))
         {
             throw new Exception($"Invalid scheme \"{request.GetScheme()}\"");
         }
@@ -241,9 +208,9 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
 
     void RegisterUriSchemeRequestHandler()
     {
-        if (!UriSchemeRequestHandlers.TryGetValue(_webview.Handle, out var uriSchemeHandler))
+        if (!UriSchemeRequestHandlers.TryGetValue(_webview.Handle.DangerousGetHandle(), out var uriSchemeHandler))
         {
-            UriSchemeRequestHandlers.Add(_webview.Handle, (_hostPageRelativePath, TryGetResponseContentInternal));
+            UriSchemeRequestHandlers.Add(_webview.Handle.DangerousGetHandle(), (_hostPageRelativePath, TryGetResponseContentInternal));
         }
     }
 
@@ -296,6 +263,22 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
                 PolicyDecisionType.NewWindowAction => HandleNewWindowAction(navigationPolicyDecision),
                 _ => false
             };
+        }
+        else if (args.Decision is ResponsePolicyDecision responsePolicyDecision)
+        {
+            if (responsePolicyDecision.IsMainFrameMainResource())
+            {
+                var uriString = responsePolicyDecision.GetRequest().GetUri();
+                if (Uri.TryCreate(uriString, UriKind.RelativeOrAbsolute, out var uri))
+                {
+                    if (!AppOriginUri.IsBaseOf(uri))
+                    {
+                        responsePolicyDecision.Ignore();
+                        return true;
+                    }
+                }
+
+            }
         }
 
         return false;
@@ -358,7 +341,7 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
         var userContentManager = _webview.GetUserContentManager();
         userContentManager.UnregisterScriptMessageHandler(MessageQueueId, null);
         userContentManager.RemoveScript(_script);
-        UriSchemeRequestHandlers.Remove(_webview.Handle);
+        UriSchemeRequestHandlers.Remove(_webview.Handle.DangerousGetHandle());
 
         _detached = true;
     }

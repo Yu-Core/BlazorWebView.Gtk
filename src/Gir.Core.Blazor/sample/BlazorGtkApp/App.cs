@@ -26,7 +26,7 @@ namespace BlazorGtkApp
         private void ApplicationActivate(Application sender, EventArgs args)
         {
             window = new MainWindow(app, _serviceProvider);
-            window.Show();
+            window.Present();
         }
 
         public int Run(string[] args)
