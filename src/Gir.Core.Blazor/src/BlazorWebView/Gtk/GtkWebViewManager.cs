@@ -86,6 +86,13 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
     {
         ArgumentNullException.ThrowIfNull(webview);
 
+        if (services.GetService<GtkBlazorMarkerService>() is null)
+        {
+            throw new InvalidOperationException(
+                "Unable to find the required services. " +
+                $"Please add all the required services by calling '{nameof(IServiceCollection)}.{nameof(BlazorWebViewServiceCollectionExtensions.AddGtkBlazorWebView)}' in the application startup code.");
+        }
+
         _logger = logger;
         _webview = webview;
         _urlLoading = urlLoading;
@@ -157,7 +164,7 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
 
     delegate bool TryGetResponseContentHandler(string uri, bool allowFallbackOnHostPage, out int statusCode, out string statusMessage, out Stream content, out IDictionary<string, string> headers);
 
-    static readonly Dictionary<IntPtr, (string _hostPageRelativePath, TryGetResponseContentHandler tryGetResponseContent)> UriSchemeRequestHandlers = new();
+    static readonly Dictionary<IntPtr, (string _hostPageRelativePath, TryGetResponseContentHandler tryGetResponseContent)> UriSchemeRequestHandlers = [];
 
     static bool HandleUriSchemeRequestIsRegistered = false;
 

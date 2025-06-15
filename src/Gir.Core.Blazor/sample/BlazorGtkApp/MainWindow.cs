@@ -1,7 +1,5 @@
 using BlazorGtkApp.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebView.Gtk;
-using System.Reflection.Metadata;
 
 namespace BlazorGtkApp
 {
@@ -21,7 +19,6 @@ namespace BlazorGtkApp
             blazorWebView.HostPage = Path.Combine("wwwroot", "index.html");
             blazorWebView.Services = serviceProvider;
             blazorWebView.RootComponents.Add<Routes>("#app");
-            blazorWebView.RootComponents.Add<HeadOutlet>("head::after");
 
             this.SetChild(blazorWebView);
         }
