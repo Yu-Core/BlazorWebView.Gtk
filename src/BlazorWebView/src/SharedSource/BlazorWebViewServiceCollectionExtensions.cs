@@ -1,4 +1,3 @@
-﻿using System;
 #if WEBVIEW2_WINFORMS
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 #elif WEBVIEW2_WPF
@@ -11,21 +10,20 @@ using Microsoft.Maui.Hosting;
 #else
 #error Must define WEBVIEW2_WINFORMS, WEBVIEW2_WPF, WEBVIEW2_MAUI
 #endif
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-	/// <summary>
-	/// Extension methods to <see cref="IServiceCollection"/>.
-	/// </summary>
-	public static class BlazorWebViewServiceCollectionExtensions
-	{
-		/// <summary>
-		/// Configures <see cref="IServiceCollection"/> to add support for <see cref="BlazorWebView"/>.
-		/// </summary>
-		/// <param name="services">The <see cref="IServiceCollection"/>.</param>
-		/// <returns>The <see cref="IServiceCollection"/>.</returns>
+    /// <summary>
+    /// Extension methods to <see cref="IServiceCollection"/>.
+    /// </summary>
+    public static class BlazorWebViewServiceCollectionExtensions
+    {
+        /// <summary>
+        /// Configures <see cref="IServiceCollection"/> to add support for <see cref="BlazorWebView"/>.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/>.</param>
+        /// <returns>The <see cref="IServiceCollection"/>.</returns>
 #if WEBVIEW2_WINFORMS
 		public static IWindowsFormsBlazorWebViewBuilder AddWindowsFormsBlazorWebView(this IServiceCollection services)
 #elif WEBVIEW2_WPF
@@ -38,13 +36,13 @@ namespace Microsoft.Extensions.DependencyInjection
 #endif
 		public static IMauiBlazorWebViewBuilder AddMauiBlazorWebView(this IServiceCollection services)
 #elif WEBKIT_GTK
-		public static IGtkBlazorWebViewBuilder AddGtkBlazorWebView(this IServiceCollection services)
+        public static IGtkBlazorWebViewBuilder AddGtkBlazorWebView(this IServiceCollection services)
 #else
 #error Must define WEBVIEW2_WINFORMS, WEBVIEW2_WPF, WEBVIEW2_MAUI
 #endif
-		{
-			services.AddBlazorWebView();
-			services.TryAddSingleton(new BlazorWebViewDeveloperTools { Enabled = false });
+        {
+            services.AddBlazorWebView();
+            services.TryAddSingleton(new BlazorWebViewDeveloperTools { Enabled = false });
 #if WEBVIEW2_MAUI
 			services.TryAddSingleton(_ => new MauiBlazorMarkerService());
 			services.ConfigureMauiHandlers(static handlers => handlers.AddHandler<IBlazorWebView>(_ => new BlazorWebViewHandler()));
@@ -56,19 +54,19 @@ namespace Microsoft.Extensions.DependencyInjection
 			services.TryAddSingleton(_ => new WpfBlazorMarkerService());
 			return new WpfBlazorWebViewBuilder(services);
 #elif WEBKIT_GTK
-			services.TryAddSingleton<GtkBlazorMarkerService>();
-			return new GtkBlazorWebViewBuilder(services);			
+            services.TryAddSingleton<GtkBlazorMarkerService>();
+            return new GtkBlazorWebViewBuilder(services);
 #endif
-		}
+        }
 
-		/// <summary>
-		/// Enables Developer tools on the underlying WebView controls.
-		/// </summary>
-		/// <param name="services">The <see cref="IServiceCollection"/>.</param>
-		/// <returns>The <see cref="IServiceCollection"/>.</returns>
-		public static IServiceCollection AddBlazorWebViewDeveloperTools(this IServiceCollection services)
-		{
-			return services.AddSingleton<BlazorWebViewDeveloperTools>(new BlazorWebViewDeveloperTools { Enabled = true });
-		}
-	}
+        /// <summary>
+        /// Enables Developer tools on the underlying WebView controls.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/>.</param>
+        /// <returns>The <see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddBlazorWebViewDeveloperTools(this IServiceCollection services)
+        {
+            return services.AddSingleton<BlazorWebViewDeveloperTools>(new BlazorWebViewDeveloperTools { Enabled = true });
+        }
+    }
 }

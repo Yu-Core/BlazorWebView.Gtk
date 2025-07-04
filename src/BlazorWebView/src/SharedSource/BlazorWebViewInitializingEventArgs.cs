@@ -1,4 +1,3 @@
-﻿using System;
 #if WEBVIEW2_WINFORMS
 using Microsoft.Web.WebView2.Core;
 using WebView2Control = Microsoft.Web.WebView2.WinForms.WebView2;
@@ -18,11 +17,11 @@ using TWebView = Tizen.WebView.WebView;
 
 namespace Microsoft.AspNetCore.Components.WebView
 {
-	/// <summary>
-	/// Allows configuring the underlying web view when the application is initializing.
-	/// </summary>
-	public class BlazorWebViewInitializingEventArgs : EventArgs
-	{
+    /// <summary>
+    /// Allows configuring the underlying web view when the application is initializing.
+    /// </summary>
+    public class BlazorWebViewInitializingEventArgs : EventArgs
+    {
 #nullable disable
 #if WINDOWS
 		/// <summary>
@@ -46,5 +45,5 @@ namespace Microsoft.AspNetCore.Components.WebView
 		/// </summary>
 		public WKWebViewConfiguration Configuration { get; set; }
 #endif
-	}
+    }
 }
