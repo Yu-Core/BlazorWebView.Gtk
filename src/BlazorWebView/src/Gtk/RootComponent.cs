@@ -5,6 +5,7 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk
 {
     /// <summary>
     /// Describes a root component that can be added to a <see cref="BlazorWebView"/>.
+    /// from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/Gtk/RootComponent.cs
     /// </summary>
     public class RootComponent
     {

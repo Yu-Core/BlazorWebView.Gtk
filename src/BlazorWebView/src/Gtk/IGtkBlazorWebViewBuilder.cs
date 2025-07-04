@@ -7,6 +7,7 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk
 {
     /// <summary>
     /// A builder for Gtk Blazor WebViews.
+    /// from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/Gtk/IGtkBlazorWebViewBuilder.cs
     /// </summary>
     public interface IGtkBlazorWebViewBuilder
     {

@@ -13,6 +13,10 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk
 {
     /// <summary>
     /// A Gtk Widget for hosting Razor components locally in Windows desktop applications.
+    /// Partially based on
+    /// https://github.com/dotnet/maui/blob/main/src/BlazorWebView/src/WindowsForms/BlazorWebView.cs
+    /// https://github.com/dotnet/maui/blob/main/src/BlazorWebView/src/Wpf/BlazorWebView.cs
+    /// https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/Gtk/BlazorWebView.cs
     /// </summary>
     public class BlazorWebView : ScrolledWindow, IAsyncDisposable
     {

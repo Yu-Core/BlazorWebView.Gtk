@@ -1,6 +1,7 @@
 namespace Microsoft.Maui.Dispatching
 {
     /// <inheritdoc/>
+    /// Based on https://github.com/dotnet/maui/blob/main/src/Core/src/Dispatching/Dispatcher.Tizen.cs
     public partial class Dispatcher : IDispatcher
     {
         readonly SynchronizationContext _context;

@@ -5,6 +5,7 @@
 
 namespace Microsoft.AspNetCore.Components.WebView
 {
+    // from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/SharedSource/QueryStringHelper.cs
     internal static class QueryStringHelper
     {
         public static string RemovePossibleQueryString(string? url)

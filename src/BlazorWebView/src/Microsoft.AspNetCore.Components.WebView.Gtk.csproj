@@ -5,6 +5,17 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<DefineConstants>$(DefineConstants);GTK;WEBKIT_GTK</DefineConstants>
+
+		<PackageId>Yu-Core.AspNetCore.Components.WebView.Gtk</PackageId>
+		<Authors>Yu-Core</Authors>
+		<Description>
+			Build Linux apps with Blazor and WebKitGTK
+		</Description>
+		<PackageProjectUrl>https://github.com/Yu-Core/BlazorWebView.Gtk</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/Yu-Core/BlazorWebView.Gtk</RepositoryUrl>
+		<PackageTags>Linux;GTK;Blazor;Gir.Core</PackageTags>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	</PropertyGroup>
 	
 	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
@@ -13,6 +24,17 @@
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView" Version="9.0.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\..\..\LICENSE.txt">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\..\..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>

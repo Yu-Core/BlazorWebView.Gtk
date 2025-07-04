@@ -5,6 +5,7 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk
 {
     /// <summary>
     /// Provides a set of extension methods for modifying collections of <see cref="IComponent"/> objects.
+    /// from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/Gtk/RootComponentCollectionExtensions.cs
     /// </summary>
     public static class RootComponentCollectionExtensions
     {

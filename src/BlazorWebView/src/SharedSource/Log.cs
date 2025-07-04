@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Microsoft.AspNetCore.Components.WebView;
 
+// from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/SharedSource/Log.cs
 internal static partial class Log
 {
     [LoggerMessage(EventId = 0, Level = LogLevel.Debug, Message = "Navigating to {uri}.")]

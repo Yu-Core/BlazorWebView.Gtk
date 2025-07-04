@@ -19,6 +19,7 @@ namespace Microsoft.AspNetCore.Components.WebView
 {
     /// <summary>
     /// Allows configuring the underlying web view when the application is initializing.
+    /// from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/SharedSource/BlazorWebViewInitializingEventArgs.cs
     /// </summary>
     public class BlazorWebViewInitializingEventArgs : EventArgs
     {

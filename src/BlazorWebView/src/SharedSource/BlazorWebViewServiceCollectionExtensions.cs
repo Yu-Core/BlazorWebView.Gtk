@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Extension methods to <see cref="IServiceCollection"/>.
+    /// from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/SharedSource/BlazorWebViewServiceCollectionExtensions.cs
     /// </summary>
     public static class BlazorWebViewServiceCollectionExtensions
     {

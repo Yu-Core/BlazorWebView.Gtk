@@ -8,6 +8,7 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk
 {
     /// <summary>
     /// A collection of <see cref="RootComponent"/> items.
+    /// from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/Gtk/RootComponentsCollection.cs
     /// </summary>
     public class RootComponentsCollection : ObservableCollection<RootComponent>, IJSComponentConfiguration
     {

@@ -2,6 +2,7 @@ namespace Microsoft.Maui.Dispatching
 {
     /// <summary>
     /// Provides the core event message dispatcher. Instances of this type are responsible for processing the window messages and dispatching the events to the client.
+    /// from https://github.com/dotnet/maui/blob/main/src/Core/src/Dispatching/IDispatcher.cs
     /// </summary>
     public interface IDispatcher
     {

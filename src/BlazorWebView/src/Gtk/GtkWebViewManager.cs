@@ -9,6 +9,11 @@ using WebKit;
 namespace Microsoft.AspNetCore.Components.WebView.Gtk;
 #pragma warning disable CS0649 // Field is never assigned to, and will always have its default value
 
+/// <summary>
+/// Partially based on
+/// https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/Gtk.SharedSource/GtkWebViewManager.cs
+/// https://github.com/DevToys-app/DevToys/blob/main/src/app/dev/platforms/desktop/DevToys.Linux/Components/BlazorWebView
+/// </summary>
 public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView.WebViewManager
 {
     protected const string AppHostAddress = "localhost";

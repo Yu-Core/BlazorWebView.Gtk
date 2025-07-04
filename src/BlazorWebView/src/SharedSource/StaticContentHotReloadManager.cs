@@ -9,11 +9,12 @@ using System.Text.RegularExpressions;
 
 namespace Microsoft.AspNetCore.Components.WebView
 {
+    // from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/SharedSource/StaticContentHotReloadManager.cs
     internal static class StaticContentHotReloadManager
     {
         private delegate void ContentUpdatedHandler(string assemblyName, string relativePath);
 
-        private readonly static Regex ContentUrlRegex = new Regex("^_content/(?<AssemblyName>[^/]+)/(?<RelativePath>.*)");
+        private static readonly Regex ContentUrlRegex = new Regex("^_content/(?<AssemblyName>[^/]+)/(?<RelativePath>.*)");
         private static event ContentUpdatedHandler? OnContentUpdated;
 
         // If the current platform can't tell us the application entry assembly name, we can use a placeholder name

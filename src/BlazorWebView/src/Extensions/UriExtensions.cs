@@ -1,5 +1,6 @@
 namespace Microsoft.AspNetCore.Components.WebView.Gtk
 {
+    // from https://github.com/dotnet/maui/blob/main/src/BlazorWebView/src/Maui/Extensions/UriExtensions.cs
     internal static class UriExtensions
     {
         internal static bool IsBaseOfPage(this Uri baseUri, string? uriString)

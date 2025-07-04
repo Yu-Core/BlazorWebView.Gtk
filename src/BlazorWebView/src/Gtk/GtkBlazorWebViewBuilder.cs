@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Microsoft.AspNetCore.Components.WebView.Gtk
 {
+    // from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/Gtk/GtkBlazorWebViewBuilder.cs
     internal class GtkBlazorWebViewBuilder : IGtkBlazorWebViewBuilder
     {
         public IServiceCollection Services { get; }

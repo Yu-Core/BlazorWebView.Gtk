@@ -4,7 +4,7 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk;
 
 
 /// <summary>
-/// DUMMY
+/// Based on https://github.com/dotnet/maui/blob/main/src/BlazorWebView/src/Maui/MauiDispatcher.cs
 /// </summary>
 public class GtkDispatcher : Dispatcher
 {

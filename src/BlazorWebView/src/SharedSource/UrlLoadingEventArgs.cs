@@ -2,6 +2,7 @@ namespace Microsoft.AspNetCore.Components.WebView
 {
     /// <summary>
     /// Used to provide information about a link (<![CDATA[<a>]]>) clicked within a Blazor WebView.
+    /// from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/SharedSource/UrlLoadingEventArgs.cs
     /// <para>
     /// Anchor tags with target="_blank" will always open in the default
     /// browser and the UrlLoading event won't be called.

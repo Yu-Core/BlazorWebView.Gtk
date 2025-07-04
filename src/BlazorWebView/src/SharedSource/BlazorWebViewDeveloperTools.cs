@@ -10,6 +10,7 @@ namespace Microsoft.AspNetCore.Components.WebView.Maui
 #error Must define WEBVIEW2_WINFORMS, WEBVIEW2_WPF, WEBVIEW2_MAUI
 #endif
 {
+    // from https://github.com/jsuarezruiz/maui-linux/blob/main/src/BlazorWebView/src/SharedSource/BlazorWebViewDeveloperTools.cs
     internal class BlazorWebViewDeveloperTools
     {
         public bool Enabled { get; set; } = false;

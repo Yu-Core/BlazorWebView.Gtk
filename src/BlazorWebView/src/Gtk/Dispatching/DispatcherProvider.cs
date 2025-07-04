@@ -1,6 +1,7 @@
 namespace Microsoft.Maui.Dispatching
 {
     /// <inheritdoc/>
+    /// from https://github.com/dotnet/maui/blob/main/src/Core/src/Dispatching/DispatcherProvider.cs
     public partial class DispatcherProvider : IDispatcherProvider
     {
         [ThreadStatic]

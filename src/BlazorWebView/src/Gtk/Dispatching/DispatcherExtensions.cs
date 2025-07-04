@@ -2,6 +2,7 @@ namespace Microsoft.Maui.Dispatching
 {
     /// <summary>
     /// This class provides a set of extension methods that can be used on objects implementing <see cref="IDispatcher"/>.
+    /// from https://github.com/dotnet/maui/blob/main/src/Core/src/Dispatching/DispatcherExtensions.cs
     /// </summary>
     public static class DispatcherExtensions
     {
