@@ -54,6 +54,7 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
     private readonly Action<UrlLoadingEventArgs>? _urlLoading;
     private readonly Action<BlazorWebViewInitializingEventArgs>? _blazorWebViewInitializing;
     private readonly Action<BlazorWebViewInitializedEventArgs>? _blazorWebViewInitialized;
+    private readonly Action<BlazorWebViewWebResourceRequestedEventArgs>? _blazorWebViewWebResourceRequested;
     private readonly BlazorWebViewDeveloperTools _developerTools;
 
     /// <summary>
@@ -80,6 +81,7 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
         Action<UrlLoadingEventArgs> urlLoading,
         Action<BlazorWebViewInitializingEventArgs> blazorWebViewInitializing,
         Action<BlazorWebViewInitializedEventArgs> blazorWebViewInitialized,
+        Action<BlazorWebViewWebResourceRequestedEventArgs> blazorWebViewWebResourceRequested,
         ILogger logger)
         : base(services, dispatcher, AppOriginUri, fileProvider, jsComponents, hostPagePathWithinFileProvider)
 
@@ -98,6 +100,7 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
         _urlLoading = urlLoading;
         _blazorWebViewInitializing = blazorWebViewInitializing;
         _blazorWebViewInitialized = blazorWebViewInitialized;
+        _blazorWebViewWebResourceRequested = blazorWebViewWebResourceRequested;
         _developerTools = services.GetRequiredService<BlazorWebViewDeveloperTools>();
         _contentRootRelativeToAppRoot = contentRootRelativeToAppRoot;
         _hostPageRelativePath = hostPagePathWithinFileProvider;
@@ -179,6 +182,16 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
         if (!UriSchemeRequestHandlers.TryGetValue(request.GetWebView().Handle.DangerousGetHandle(), out var uriSchemeHandler))
         {
             throw new Exception($"Invalid scheme \"{request.GetScheme()}\"");
+        }
+
+        if (_blazorWebViewWebResourceRequested is not null)
+        {
+            var blazorWebViewWebResourceRequestedEventArgs = new BlazorWebViewWebResourceRequestedEventArgs(request);
+            _blazorWebViewWebResourceRequested.Invoke(blazorWebViewWebResourceRequestedEventArgs);
+            if (blazorWebViewWebResourceRequestedEventArgs.Response is not null)
+            {
+                return;
+            }
         }
 
         var requestUri = QueryStringHelper.RemovePossibleQueryString(request.GetUri());

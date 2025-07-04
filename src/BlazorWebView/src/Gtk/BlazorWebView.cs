@@ -138,6 +138,8 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk
         [Description("Allows customizing the web view after it is created.")]
         public EventHandler<BlazorWebViewInitializedEventArgs>? BlazorWebViewInitialized;
 
+        public EventHandler<BlazorWebViewWebResourceRequestedEventArgs>? BlazorWebViewWebResourceRequested;
+
         private void OnHostPagePropertyChanged() => StartWebViewCoreIfPossible();
 
         private void OnServicesPropertyChanged() => StartWebViewCoreIfPossible();
@@ -192,6 +194,7 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk
                 (args) => UrlLoading?.Invoke(this, args),
                 (args) => BlazorWebViewInitializing?.Invoke(this, args),
                 (args) => BlazorWebViewInitialized?.Invoke(this, args),
+                (args) => BlazorWebViewWebResourceRequested?.Invoke(this, args),
                 logger);
 
             StaticContentHotReloadManager.AttachToWebViewManagerIfEnabled(_webviewManager);
