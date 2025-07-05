@@ -36,6 +36,9 @@ jobs:
           patch=$((commit_count % 10))
           formatted_version="$major.$minor.$patch"
           echo "VERSION=$formatted_version" >> $GITHUB_ENV
+          
+      - name: Restore Dependencies
+        run: dotnet restore ${{ env.CSPROJ_FILE_PATH }}
 
       - name: Build
         run: dotnet build ${{ env.CSPROJ_FILE_PATH }} --configuration Release --no-restore
