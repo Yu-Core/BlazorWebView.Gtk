@@ -193,7 +193,7 @@ public partial class GtkWebViewManager : Microsoft.AspNetCore.Components.WebView
         {
             var blazorWebViewWebResourceRequestedEventArgs = new BlazorWebViewWebResourceRequestedEventArgs(request);
             _blazorWebViewWebResourceRequested.Invoke(blazorWebViewWebResourceRequestedEventArgs);
-            if (blazorWebViewWebResourceRequestedEventArgs.Response is not null)
+            if (blazorWebViewWebResourceRequestedEventArgs.Handled)
             {
                 return;
             }

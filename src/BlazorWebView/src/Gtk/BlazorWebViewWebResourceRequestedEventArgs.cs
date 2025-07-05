@@ -11,6 +11,6 @@ namespace Microsoft.AspNetCore.Components.WebView.Gtk
 
         public URISchemeRequest Request { get; }
 
-        public URISchemeResponse? Response { get; set; }
+        public bool Handled { get; set; }
     }
 }
