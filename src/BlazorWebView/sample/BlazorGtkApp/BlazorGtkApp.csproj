@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\Microsoft.AspNetCore.Components.WebView.Gtk.csproj" />
+	  <ProjectReference Include="..\..\src\AspNetCore.Components.WebView.Gtk.csproj" />
 	</ItemGroup>
 
 </Project>

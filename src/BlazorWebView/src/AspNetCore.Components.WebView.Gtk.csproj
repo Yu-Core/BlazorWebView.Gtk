@@ -11,9 +11,9 @@
 		<Description>
 			Build Linux apps with Blazor and WebKitGTK
 		</Description>
-		<PackageProjectUrl>https://github.com/Yu-Core/BlazorWebView.Gtk</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/Yu-Core/AspNetCore.Components.WebView.Gtk</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/Yu-Core/BlazorWebView.Gtk</RepositoryUrl>
+		<RepositoryUrl>https://github.com/Yu-Core/AspNetCore.Components.WebView.Gtk</RepositoryUrl>
 		<PackageTags>Linux;GTK;Blazor;Gir.Core</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	</PropertyGroup>

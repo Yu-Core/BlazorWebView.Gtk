@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35605.110
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.AspNetCore.Components.WebView.Gtk", "src\BlazorWebView\src\Microsoft.AspNetCore.Components.WebView.Gtk.csproj", "{82044EB0-BD71-1352-1300-B5E05E245902}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Components.WebView.Gtk", "src\BlazorWebView\src\AspNetCore.Components.WebView.Gtk.csproj", "{82044EB0-BD71-1352-1300-B5E05E245902}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject

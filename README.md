@@ -1,14 +1,21 @@
-# BlazorWebView.Gtk
+# AspNetCore.Components.WebView.Gtk
 
 [![NuGet Version](https://img.shields.io/nuget/v/Yu-Core.AspNetCore.Components.WebView.Gtk.svg)](https://www.nuget.org/packages/Yu-Core.AspNetCore.Components.WebView.Gtk/) ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-BlazorWebView.Gtk is a library for building native clients using Blazor and WebView. It provides a BlazorWebView Widget for running the blazor hybird application on Linux. Use GTK and WebKitGTK, bound by [Gir.Core](https://github.com/gircore/gir.core)
+AspNetCore.Components.WebView.Gtk is a library for building native clients using Blazor and WebView. It provides a BlazorWebView Widget for running the blazor hybird application on Linux. Use GTK and WebKitGTK, bound by [Gir.Core](https://github.com/gircore/gir.core)
 
 ## Start
-Install [Yu-Core.AspNetCore.Components.WebView.Gtk](https://www.nuget.org/packages/Yu-Core.AspNetCore.Components.WebView.Gtk) from NuGet
+Reference [Yu-Core.AspNetCore.Components.WebView.Gtk](https://www.nuget.org/packages/Yu-Core.AspNetCore.Components.WebView.Gtk)
 
-```PowerShell
-Install-Package Yu-Core.AspNetCore.Components.WebView.Gtk
+```
+<PackageReference Include="Yu-Core.AspNetCore.Components.WebView.Gtk" Version="0.1.1" />
+```
+
+Install `libwebkitgtk-6.0-4`
+
+```bash
+sudo apt update
+sudo apt install libwebkitgtk-6.0-4
 ```
 
 See [sample](src/BlazorWebView/sample)
@@ -32,4 +39,5 @@ See [sample](src/BlazorWebView/sample)
 - [.NET MAUI](https://github.com/dotnet/maui)
 - [ASP.NET Core](https://github.com/dotnet/aspnetcore)
 - [DevToys](https://github.com/DevToys-app/DevToys)
+- [Gir.Core](https://github.com/gircore/gir.core)
 - [maui-linux](https://github.com/jsuarezruiz/maui-linux)
